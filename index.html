@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> SEVEN WINGO 30S HACK</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+  --blue-neon: #00bfff;
+  --blue-gradient: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%);
+  --bg-dark: #000000;
+  --input-bg: #111111;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body {
+  background: var(--bg-dark);
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/*  Login Overlay */
+#loginOverlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 15px var(--blue-neon));
+}
+
+.login-title {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
+
+.input-group {
+  width: 85%;
+  max-width: 320px;
+}
+
+input {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  background: var(--input-bg);
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  outline: none;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 15px;
+  background: var(--blue-gradient);
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.4);
+}
+
+/* --- Content Layers --- */
+#mainContent { display: none; width: 100%; height: 100%; }
+iframe { width: 100%; height: 100%; border: 0; position: fixed; inset: 0; }
+
+#welcomePage {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: block; /* Success ဖြစ်ရင် ဒါအရင်ပြမယ် */
+  z-index: 20;
+}
+
+#gameFrame { display: none; z-index: 10; }
+
+#toggleBtn {
+  position: fixed; top: 20px; right: 20px;
+  background: var(--blue-gradient); color: #fff;
+  padding: 12px 20px; border-radius: 10px; border: none;
+  font-weight: 700; cursor: pointer; z-index: 1000;
+  box-shadow: 0 0 15px var(--blue-neon);
+}
+</style>
+</head>
+<body>
+
+<div id="loginOverlay">
+  <div class="icon-container">
+    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9.5 2C7.567 2 6 3.567 6 5.5C6 6.13043 6.1664 6.72195 6.45831 7.23414C4.46011 8.00693 3 9.87865 3 12C3 14.1213 4.46011 15.9931 6.45831 16.7659C6.1664 17.278 6 17.8696 6 18.5C6 20.433 7.567 22 9.5 22C10.7431 22 11.8335 21.352 12.4583 20.3758C12.4859 20.3853 12.514 20.3941 12.5417 20.3758C13.1665 21.352 14.2569 22 15.5 22C17.433 22 19 20.433 19 18.5C19 17.8696 18.8336 17.278 18.5417 16.7659C20.5399 15.9931 22 14.1213 22 12C22 9.87865 20.5399 8.00693 18.5417 7.23414C18.8336 6.72195 19 6.13043 19 5.5C19 3.567 17.433 2 15.5 2C14.2569 2 13.1665 2.64805 12.5417 3.62423C12.514 3.60591 12.4859 3.61469 12.4583 3.62423C11.8335 2.64805 10.7431 2 9.5 2Z" stroke="#00bfff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12 20V4" stroke="#00bfff" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <h1 class="login-title">LOGIN</h1>
+  <div class="input-group">
+    <input type="password" id="passInput" placeholder="Password">
+    <button class="login-btn" onclick="checkLogin()">LOGIN</button>
+  </div>
+  <p id="errMsg" style="color: #ff4444; font-size: 13px; margin-top: 15px; display: none;">Password မှားယွင်းနေပါသည်။</p>
+</div>
+
+<div id="mainContent">
+  <button id="toggleBtn" onclick="toggleMode()">GAME PAGE</button>
+  
+  <iframe id="gameFrame" src="https://www.cklottery.info/#/register?invitationCode=83836388712"></iframe>
+  
+  <div id="welcomePage">
+     <iframe id="predictionFrame" srcdoc='
+     <html>
+     <body style="background:#000; color:cyan; display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; font-family:sans-serif;">
+        <h1>HACK PAGE ACTIVE</h1>
+        <p>Prediction Logic စတင်နေပါပြီ...</p>
+     </body>
+     </html>'></iframe>
+  </div>
+</div>
+
+<script>
+const PASSWORD = "zwe114"; //  စကားဝှက်
+
+function checkLogin() {
+  const input = document.getElementById("passInput").value;
+  const error = document.getElementById("errMsg");
+
+  if (input === PASSWORD) {
+    document.getElementById("loginOverlay").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
+  } else {
+    error.style.display = "block";
+    document.getElementById("passInput").value = "";
+  }
+}
+
+function toggleMode() {
+  const hack = document.getElementById("welcomePage");
+  const game = document.getElementById("gameFrame");
+  const btn = document.getElementById("toggleBtn");
+
+  if (hack.style.display === "none") {
+    hack.style.display = "block";
+    game.style.display = "none";
+    btn.textContent = "GAME PAGE";
+  } else {
+    hack.style.display = "none";
+    game.style.display = "block";
+    btn.textContent = "HACK PAGE";
+  }
+}
+
+document.getElementById("passInput").addEventListener("keypress", (e) => {
+  if (e.key === "Enter") checkLogin();
+});
+</script>
+
+</body>
+</html>
